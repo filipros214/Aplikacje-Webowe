@@ -4,6 +4,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar.jsx'
+import CategoryBar from './components/CategoryBar.jsx'
+
+
 function App() {
     return (
         <>
@@ -41,6 +44,10 @@ function App() {
                     </div>
                 </div>
             </header>
+
+            <main className="container">
+                <CategoryBar />
+            </main>
         </>
     )
 }
