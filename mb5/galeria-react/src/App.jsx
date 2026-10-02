@@ -9,11 +9,15 @@ import Gallery from './components/Gallery.jsx'
 import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffCanvas.jsx'
+import photos from './data/photos.json'
 
 
 
 
 function App() {
+
+    const [zdjecia, setZdjecia] = useState(photos)
+
     return (
         <>
             <Navbar />
@@ -53,7 +57,7 @@ function App() {
 
             <main className="container">
                 <CategoryBar />
-                <Gallery />
+                <Gallery zdjecia={zdjecia} />
             </main>
 
             <Footer />
