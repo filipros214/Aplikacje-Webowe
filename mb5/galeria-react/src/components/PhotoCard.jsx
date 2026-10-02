@@ -6,7 +6,8 @@ const KOLOR_KATEGORII = {
     gory: 'success', morze: 'primary', miasto:
         'dark'
 }
-function PhotoCard({ id, title, description, category, image, alt }) {
+// 1. Dodaj onUsun do przekazywanych propsów
+function PhotoCard({ id, title, description, category, image, alt, onUsun }) {
     return (
         <div className="card h-100 shadow-sm">
             <img src={image} className="card-img-top" alt={alt} />
@@ -18,14 +19,24 @@ function PhotoCard({ id, title, description, category, image, alt }) {
                     </span>
                 </p>
                 <p className="card-text text-bodysecondary">{description}</p>
-                <button
-                    type="button"
-                    className="btn btn-outline-primary mt-auto"
-                    data-bs-toggle="modal"
-                    data-bs-target={`#zdjecie${id}`}
-                >
-                    Powiększ
-                </button>
+                <div className="d-flex gap-2 mt-auto">
+                    <button
+                        type="button"
+                        className="btn btn-outline-primary flex-fill"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#zdjecie${id}`}
+                    >
+                        Powiększ
+                    </button>
+                    
+                    <button 
+                        type="button" 
+                        className="btn btn-outline-danger" 
+                        onClick={() => onUsun(id)}
+                    >
+                        Usuń
+                    </button>
+                </div>
             </div>
         </div>
     )
