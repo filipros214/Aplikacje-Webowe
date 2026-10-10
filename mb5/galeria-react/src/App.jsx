@@ -27,60 +27,65 @@ function App() {
         setZdjecia(zdjecia.filter(z => z.id !== id))
     }
 
-    return (
-        <>
-            <Navbar />
-            <header className="container py-4 py-lg-5">
-                <div className="row align-items-center g-3">
-                    <div className="col-12 col-lg-8">
-                        <h1 className="mb-2">Galeria zdjęć</h1>
-                        <p className="lead text-body-secondary mb-0">
-                            Zdjęcia z wypraw w góry, nad morze i po mieście.
-                            Wybierz kategorię,
-                            żeby zawęzić widok — albo powiększ zdjęcie, które Ci
-                            się spodoba.
-                        </p>
-                    </div>
-                    <div className="col-12 col-lg-4">
-                        <div className="d-flex flex-wrap gap-2 justify-contentlg-end">
-                            <button
-                                type="button"
-                                className="btn btn-outline-secondary"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#panelFiltrow"
-                            >
-                                Filtry
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-primary"
-                                data-bs-toggle="modal"
-                                data-bs-target="#dodajZdjecie"
-                            >
-                                Dodaj zdjęcie
-                            </button>
-                        </div>
+    function dodajZdjecie(nowe) {
+        const noweId = Math.max(...zdjecia.map(z => z.id)) + 1
+        setZdjecia([...zdjecia, {...nowe, id: noweId, favorite: false}])
+    }
+
+return (
+    <>
+        <Navbar />
+        <header className="container py-4 py-lg-5">
+            <div className="row align-items-center g-3">
+                <div className="col-12 col-lg-8">
+                    <h1 className="mb-2">Galeria zdjęć</h1>
+                    <p className="lead text-body-secondary mb-0">
+                        Zdjęcia z wypraw w góry, nad morze i po mieście.
+                        Wybierz kategorię,
+                        żeby zawęzić widok — albo powiększ zdjęcie, które Ci
+                        się spodoba.
+                    </p>
+                </div>
+                <div className="col-12 col-lg-4">
+                    <div className="d-flex flex-wrap gap-2 justify-contentlg-end">
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#panelFiltrow"
+                        >
+                            Filtry
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#dodajZdjecie"
+                        >
+                            Dodaj zdjęcie
+                        </button>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <main className="container">
-                <CategoryBar aktywna={aktywnaKategoria}
-                    onWybierz={setAktywnaKategoria} />
-                {widoczne.length === 0 && (
-                    <div className="alert alert-warning">
-                        Nie znaleziono zdjęć w tej kategorii.
-                    </div>
-                )}
-                <Gallery zdjecia={widoczne} onUsun={usunZdjecie} />
-            </main>
-
-            <Footer />
-            <AddPhotoModal />
-            <FiltersOffcanvas aktywna={aktywnaKategoria}
+        <main className="container">
+            <CategoryBar aktywna={aktywnaKategoria}
                 onWybierz={setAktywnaKategoria} />
+            {widoczne.length === 0 && (
+                <div className="alert alert-warning">
+                    Nie znaleziono zdjęć w tej kategorii.
+                </div>
+            )}
+            <Gallery zdjecia={widoczne} onUsun={usunZdjecie} />
+        </main>
 
-        </>
-    )
+        <Footer />
+        <AddPhotoModal onDodaj={dodajZdjecie} />
+        <FiltersOffcanvas aktywna={aktywnaKategoria}
+            onWybierz={setAktywnaKategoria} />
+
+    </>
+)
 }
 export default App

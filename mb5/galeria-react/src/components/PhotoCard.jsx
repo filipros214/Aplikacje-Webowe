@@ -24,16 +24,11 @@ function PhotoCard({ id, title, description, category, image, alt, onUsun }) {
                         type="button"
                         className="btn btn-outline-primary flex-fill"
                         data-bs-toggle="modal"
-                        data-bs-target={`#zdjecie${id}`}
-                    >
+                        data-bs-target={`#zdjecie${id}`}>
                         Powiększ
                     </button>
                     
-                    <button 
-                        type="button" 
-                        className="btn btn-outline-danger" 
-                        onClick={() => onUsun(id)}
-                    >
+                    <button type="button" className="btn btn-outline-danger" onClick={() => onUsun(id)}>
                         Usuń
                     </button>
                 </div>
